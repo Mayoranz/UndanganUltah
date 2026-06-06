@@ -1,0 +1,429 @@
+@import "tailwindcss";
+
+/* ===== DESIGN TOKENS (ELEGANT AESTHETIC) ===== */
+:root {
+  --sky-blue: #A2C2E1;
+  --sky-blue-light: #DCEAF4;
+  --powder-blue: #B5D2E8;
+  --powder-blue-light: #EBF2F8;
+  --cream: #FAF7F2;
+  --cream-dark: #F2EBE1;
+  --maroon: #6B2D38;
+  --maroon-light: #8A4351;
+  --gold: #D4AF37;
+  --gold-light: #F3E5AB;
+  --white: #FFFFFF;
+  --text-dark: #2C3539;
+  --text-muted: #6A7B82;
+
+  --font-heading: 'Playfair Display', Georgia, serif;
+  --font-body: 'Poppins', sans-serif;
+
+  --glass-bg: rgba(250, 247, 242, 0.4);
+  --glass-border: rgba(255, 255, 255, 0.5);
+  --glass-shadow: 0 10px 40px rgba(162, 194, 225, 0.15);
+}
+
+/* ===== BASE RESET ===== */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+html, body, #root {
+  width: 100%;
+  min-height: 100dvh;
+  overflow-x: hidden;
+  font-family: var(--font-body);
+  color: var(--text-dark);
+  background: var(--cream);
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+/* ===== SCROLLBAR ===== */
+::-webkit-scrollbar {
+  width: 4px;
+}
+::-webkit-scrollbar-track {
+  background: transparent;
+}
+::-webkit-scrollbar-thumb {
+  background: var(--sky-blue);
+  border-radius: 4px;
+}
+
+/* ===== GLASSMORPHISM (PREMIUM) ===== */
+.glass {
+  background: rgba(255, 255, 255, 0.4);
+  backdrop-filter: blur(20px);
+  -webkit-backdrop-filter: blur(20px);
+  border: 1px solid rgba(255, 255, 255, 0.6);
+  border-radius: 24px;
+  box-shadow: 0 10px 40px rgba(107, 45, 56, 0.05);
+}
+
+.glass-strong {
+  background: rgba(250, 247, 242, 0.6);
+  backdrop-filter: blur(28px);
+  -webkit-backdrop-filter: blur(28px);
+  border: 1px solid rgba(255, 255, 255, 0.8);
+  border-radius: 24px;
+  box-shadow: 0 15px 50px rgba(162, 194, 225, 0.15);
+}
+
+/* ===== BUTTON STYLES ===== */
+.btn-primary {
+  background: linear-gradient(135deg, var(--maroon), #511c26);
+  color: #FAF7F2;
+  font-family: var(--font-body);
+  font-weight: 400;
+  padding: 16px 40px;
+  border: none;
+  border-radius: 50px;
+  cursor: pointer;
+  font-size: 0.95rem;
+  letter-spacing: 1px;
+  transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+  box-shadow: 0 8px 25px rgba(107, 45, 56, 0.25);
+  text-transform: uppercase;
+}
+.btn-primary:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 12px 30px rgba(107, 45, 56, 0.35);
+  background: linear-gradient(135deg, #7c3441, #511c26);
+}
+.btn-primary:active {
+  transform: translateY(0);
+}
+
+.btn-secondary {
+  background: transparent;
+  color: var(--maroon);
+  font-family: var(--font-body);
+  font-weight: 500;
+  padding: 14px 32px;
+  border: 1px solid var(--maroon);
+  border-radius: 50px;
+  cursor: pointer;
+  font-size: 0.9rem;
+  letter-spacing: 0.5px;
+  transition: all 0.3s ease;
+}
+.btn-secondary:hover {
+  background: rgba(107, 45, 56, 0.05);
+}
+
+/* ===== INPUT STYLES ===== */
+.input-elegant {
+  width: 100%;
+  padding: 16px 24px;
+  font-family: var(--font-body);
+  font-size: 1rem;
+  color: var(--text-dark);
+  background: rgba(255, 255, 255, 0.7);
+  backdrop-filter: blur(12px);
+  border: 1px solid rgba(162, 194, 225, 0.5);
+  border-radius: 50px;
+  outline: none;
+  transition: all 0.4s ease;
+  text-align: center;
+}
+.input-elegant:focus {
+  border-color: var(--maroon-light);
+  box-shadow: 0 0 0 4px rgba(107, 45, 56, 0.08);
+  background: rgba(255, 255, 255, 0.95);
+}
+.input-elegant::placeholder {
+  color: var(--text-muted);
+  font-weight: 300;
+  letter-spacing: 0.5px;
+}
+
+/* ===== ENVELOPE STYLES (REALISTIC & ELEGANT) ===== */
+.envelope-body {
+  width: 300px;
+  height: 210px;
+  background: #FAF7F2;
+  border-radius: 4px;
+  position: relative;
+  box-shadow: 0 20px 50px rgba(162, 194, 225, 0.25);
+  /* removed overflow hidden so flap works properly */
+}
+
+/* Back folds of the envelope */
+.envelope-body::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 0;
+  height: 0;
+  border-left: 150px solid #F2EBE1;
+  border-right: 150px solid transparent;
+  border-bottom: 105px solid transparent;
+  border-top: 105px solid #F2EBE1;
+  z-index: 2;
+}
+
+.envelope-body::after {
+  content: '';
+  position: absolute;
+  top: 0;
+  right: 0;
+  width: 0;
+  height: 0;
+  border-right: 150px solid #EBE2D5;
+  border-left: 150px solid transparent;
+  border-bottom: 105px solid transparent;
+  border-top: 105px solid #EBE2D5;
+  z-index: 2;
+}
+
+.envelope-bottom {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 0;
+  height: 0;
+  border-left: 150px solid transparent;
+  border-right: 150px solid transparent;
+  border-bottom: 115px solid #F8F4EC;
+  z-index: 3;
+  filter: drop-shadow(0 -4px 8px rgba(0,0,0,0.03));
+}
+
+.envelope-flap {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 0;
+  border-left: 150px solid transparent;
+  border-right: 150px solid transparent;
+  border-top: 120px solid #FAF7F2;
+  transform-origin: top center;
+  z-index: 4;
+  filter: drop-shadow(0 4px 6px rgba(0,0,0,0.06));
+}
+
+.envelope-inner {
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(135deg, var(--sky-blue-light) 0%, var(--powder-blue) 100%);
+  opacity: 0.9;
+  z-index: 0;
+}
+
+/* Realistic Wax Seal */
+.wax-seal {
+  width: 72px;
+  height: 72px;
+  background: var(--maroon);
+  border-radius: 50%;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  z-index: 10;
+  box-shadow: 
+    inset 0 0 10px rgba(0,0,0,0.4),
+    0 4px 12px rgba(0,0,0,0.2);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  border: 1px solid rgba(255,255,255,0.1);
+}
+
+.wax-seal::before {
+  content: '';
+  position: absolute;
+  inset: 4px;
+  border-radius: 50%;
+  border: 1px solid rgba(255,255,255,0.2);
+}
+
+.wax-seal img {
+  width: 54px;
+  height: 54px;
+  border-radius: 50%;
+  object-fit: cover;
+  filter: sepia(0.3) contrast(1.1);
+  box-shadow: 0 2px 5px rgba(0,0,0,0.3);
+}
+
+/* ===== LETTER STYLES (ELEGANT PAPER) ===== */
+.letter-paper {
+  background: #FAF7F2;
+  border-radius: 8px;
+  padding: 48px 32px;
+  box-shadow: 0 20px 60px rgba(162, 194, 225, 0.2);
+  border: 1px solid rgba(255, 255, 255, 0.9);
+  position: relative;
+  overflow: hidden;
+}
+
+.letter-paper::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  opacity: 0.4;
+  background-image: radial-gradient(#6B2D38 0.5px, transparent 0.5px);
+  background-size: 16px 16px;
+  pointer-events: none;
+}
+
+/* ===== COUNTDOWN ===== */
+.countdown-unit {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 8px;
+}
+
+.countdown-number {
+  font-family: var(--font-heading);
+  font-size: 1.8rem;
+  font-weight: 500;
+  color: var(--maroon);
+  line-height: 1;
+  min-width: 50px;
+  text-align: center;
+}
+
+.countdown-label {
+  font-family: var(--font-body);
+  font-size: 0.6rem;
+  font-weight: 500;
+  color: var(--text-muted);
+  text-transform: uppercase;
+  letter-spacing: 1px;
+}
+
+/* ===== MUSIC BUTTON ===== */
+.music-btn {
+  position: fixed;
+  bottom: 30px;
+  right: 30px;
+  z-index: 100;
+  width: 50px;
+  height: 50px;
+  border-radius: 50%;
+  background: rgba(250, 247, 242, 0.8);
+  backdrop-filter: blur(12px);
+  border: 1px solid rgba(255, 255, 255, 0.6);
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: var(--maroon);
+  font-size: 1.2rem;
+  transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+  box-shadow: 0 10px 25px rgba(107, 45, 56, 0.1);
+}
+
+.music-btn:hover {
+  transform: scale(1.05) translateY(-2px);
+  box-shadow: 0 15px 35px rgba(107, 45, 56, 0.15);
+}
+
+.music-btn.playing {
+  animation: float-gentle 3s ease-in-out infinite;
+}
+
+@keyframes float-gentle {
+  0%, 100% { transform: translateY(0); }
+  50% { transform: translateY(-6px); }
+}
+
+/* ===== SCREEN CONTAINER ===== */
+.screen {
+  min-height: 100dvh;
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: 32px 24px;
+  position: relative;
+  overflow: hidden;
+}
+
+/* ===== SOFT GRADIENT BG ===== */
+.sky-bg {
+  background: linear-gradient(
+    145deg,
+    #FAF7F2 0%,
+    #EBF2F8 40%,
+    #DCEAF4 70%,
+    #FAF7F2 100%
+  );
+}
+
+/* ===== FINE LINE SEPARATOR ===== */
+.fine-line {
+  width: 1px;
+  height: 60px;
+  background: linear-gradient(to bottom, transparent, var(--maroon-light), transparent);
+  opacity: 0.4;
+  margin: 16px auto;
+}
+
+.fine-line-horizontal {
+  height: 1px;
+  width: 60px;
+  background: linear-gradient(to right, transparent, var(--maroon-light), transparent);
+  opacity: 0.4;
+  margin: 24px auto;
+}
+
+/* ===== MASONRY GALLERY ===== */
+.gallery-grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 12px;
+  width: 100%;
+}
+
+.gallery-item {
+  width: 100%;
+  border-radius: 12px;
+  overflow: hidden;
+  box-shadow: 0 8px 25px rgba(162, 194, 225, 0.2);
+  border: 2px solid #fff;
+  aspect-ratio: 4/5;
+}
+
+.gallery-item.large {
+  grid-column: span 2;
+  aspect-ratio: 16/9;
+}
+
+.gallery-img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transition: transform 0.5s ease;
+}
+
+.gallery-item:hover .gallery-img {
+  transform: scale(1.05);
+}
+
+/* ===== UTILITY ===== */
+.font-heading {
+  font-family: var(--font-heading);
+}
+
+.font-body {
+  font-family: var(--font-body);
+}
+
+.text-maroon {
+  color: var(--maroon);
+}
+
+.text-sky {
+  color: var(--sky-blue);
+}
