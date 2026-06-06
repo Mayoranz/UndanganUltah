@@ -125,7 +125,7 @@ export default function EventScreen({ guestName }) {
               <DetailRow
                 icon={IoTimeOutline}
                 label="Time"
-                value="16:45 WIB"
+                value="18:30 WIB"
                 sub="Onwards"
               />
             </div>
